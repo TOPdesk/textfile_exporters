@@ -67,14 +67,12 @@ create_text_format_file() {
   TARGET="$TEXTFILES/system-info.prom"
   TIMESTAMP=$(date +"%s")000
   echo "" > "$TARGET"
-  echo    "# HELP os_release OS Release informations" >> "$TARGET"
-  echo    "# TYPE os_release untyped" >> "$TARGET"
-  echo -e "os_release{type=\"id\"}\t$SYSTEM_ID\t$TIMESTAMP" >> "$TARGET"
-  echo -e "os_release{type=\"name\"}\t$SYSTEM_NAME\t$TIMESTAMP" >> "$TARGET"
-  echo -e "os_release{type=\"pretty-name\"}\t$SYSTEM_PRETTY_NAME\t$TIMESTAMP" >> "$TARGET"
-  echo    "# HELP kernel_version Kernel version" >> "$TARGET"
-  echo    "# TYPE kernel_version untyped" >> "$TARGET"
-  echo -e "kernel_version\t$KERNEL_VERSION\t$TIMESTAMP" >> "$TARGET"
+  echo    "# HELP node_os_release OS Release informations" >> "$TARGET"
+  echo    "# TYPE node_os_release counter" >> "$TARGET"
+  echo -e "node_os_release{id=\"$SYSTEM_ID\",name=\"$SYSTEM_NAME\",pretty_name=\"$SYSTEM_PRETTY_NAME\"}\t1\t$TIMESTAMP" >> "$TARGET"
+  echo    "# HELP node_kernel Kernel version" >> "$TARGET"
+  echo    "# TYPE node_kernel counter" >> "$TARGET"
+  echo -e "node_kernel{version=\"$KERNEL_VERSION\"}\t1\t$TIMESTAMP" >> "$TARGET"
 }
 
 validate_update_data() {
