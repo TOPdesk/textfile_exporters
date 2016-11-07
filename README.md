@@ -7,7 +7,7 @@ Scripts generally require modern bash, and created for Ubuntu (Debian) with Cent
 # Features
 
 ### System info
-Lives in **system-info.sh**. Provides metrics for OS Release ID, NAME, and PRETTY_NAME from **/etc/os-release** file, and Kernel version from **uname -r**.
+Lives in `system-info.sh`. Provides metrics for OS Release `ID`, `NAME`, and `PRETTY_NAME` from `/etc/os-release` file, and Kernel version from `uname -r`.
 ```
 os_release{type="id"}
 os_release{type="name"}
