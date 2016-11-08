@@ -65,14 +65,13 @@ get_system_info() {
 
 create_text_format_file() {
   TARGET="$TEXTFILES/system-info.prom"
-  TIMESTAMP=$(date +"%s")000
   echo "" > "$TARGET"
   echo    "# HELP node_os_release OS Release informations" >> "$TARGET"
   echo    "# TYPE node_os_release counter" >> "$TARGET"
-  echo -e "node_os_release{id=\"$SYSTEM_ID\",name=\"$SYSTEM_NAME\",pretty_name=\"$SYSTEM_PRETTY_NAME\"}\t1\t$TIMESTAMP" >> "$TARGET"
+  echo -e "node_os_release{id=\"$SYSTEM_ID\",name=\"$SYSTEM_NAME\",pretty_name=\"$SYSTEM_PRETTY_NAME\"}\t1" >> "$TARGET"
   echo    "# HELP node_kernel Kernel version" >> "$TARGET"
   echo    "# TYPE node_kernel counter" >> "$TARGET"
-  echo -e "node_kernel{version=\"$KERNEL_VERSION\"}\t1\t$TIMESTAMP" >> "$TARGET"
+  echo -e "node_kernel{version=\"$KERNEL_VERSION\"}\t1" >> "$TARGET"
 }
 
 validate_update_data() {
