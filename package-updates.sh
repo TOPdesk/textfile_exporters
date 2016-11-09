@@ -133,11 +133,11 @@ validate_update_data() {
 create_text_format_file() {
   TARGET="$TEXTFILES/package-updates.prom"
   echo "" > "$TARGET"
-  echo "# HELP updates_total The number of package updates available." >> "$TARGET"
-  echo "# TYPE updates_total counter" >> "$TARGET"
-  echo -e "updates_total{type=\"security\"}\t$SECURITY_UPDATES" >> "$TARGET"
-  echo -e "updates_total{type=\"regular\"} \t$REGULAR_UPDATES" >> "$TARGET"
-  echo -e "updates_total{type=\"available\"} \t$ALL_UPDATES" >> "$TARGET"
+  echo "# HELP node_package_updates The number of package updates available." >> "$TARGET"
+  echo "# TYPE node_package_updates counter" >> "$TARGET"
+  echo -e "node_package_updates{type=\"security\"}\t$SECURITY_UPDATES" >> "$TARGET"
+  echo -e "node_package_updates{type=\"regular\"} \t$REGULAR_UPDATES" >> "$TARGET"
+  echo -e "node_package_updates{type=\"any\"} \t$ALL_UPDATES" >> "$TARGET"
 }
 
 print_help_and_terminate() {
