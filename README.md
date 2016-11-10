@@ -15,8 +15,8 @@ node_kernel{version}
 All provided metrics are counters, and returning 1, you can find the values in the label(s).
 
 ### Package updates
-Lives in `package-updates.sh`. Provides metrics for available package updates from `apt-cache`, `yum` or `apt-get`.
-If apt-cache is available, it will be used. On Debian machines it falls back to `apt-get` and only the "any" type is returned - it can not distinguish between security and regular updates.
+Lives in `package-updates.sh`. Provides metrics for available package updates from `apt-check`, `yum` or `apt-get`.
+If apt-check is available, it will be used. On Debian machines it falls back to `apt-get` and only the "any" type is returned - it can not distinguish between security and regular updates.
 On CentOS it uses `yum list updates --security` to figure out the number of packgages.
 
 ```
