@@ -25,3 +25,9 @@ node_package_updates{type="regular"}
 node_package_updates{type="any"}
 ```
 All provided metrics are counters, and returning the number of packages, or `Nan`.
+
+Tip for Ubuntu/Debian machines: Create file `/etc/apt/apt.conf.d/99node_exporter_package_updates` with content
+```
+DPkg::Post-Invoke { "<path-to-script>/package-updates.sh -s <path-to-textfiles>"; };
+```
+to automatically update data when updates are fetched or installed.
