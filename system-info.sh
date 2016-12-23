@@ -61,6 +61,15 @@ get_system_info() {
   SYSTEM_NAME=$(cat "$OS_RELEASE" | sed -n 's/^NAME=\"\?\([^"]\+\).*$/\1/p')
   SYSTEM_PRETTY_NAME=$(cat "$OS_RELEASE" | sed -n 's/^PRETTY_NAME=\"\?\([^"]\+\).*$/\1/p')
   KERNEL_VERSION=$(uname -r)
+  if [[ "$SYSTEM_ID" = "ubuntu" || "$SYSTEM_ID" = "debian" ]] ; then
+    if [ -f "/var/run/reboot-required" ] ; then
+      REBOOT_REQUIRED="1"
+    else
+      REBOOT_REQUIRED="0"
+    fi
+  else
+    REBOOT_REQUIRED="Nan"
+  fi
 }
 
 create_text_format_file() {
@@ -68,10 +77,10 @@ create_text_format_file() {
   echo "" > "$TARGET"
   echo    "# HELP node_os_release OS Release informations" >> "$TARGET"
   echo    "# TYPE node_os_release counter" >> "$TARGET"
-  echo -e "node_os_release{id=\"$SYSTEM_ID\",name=\"$SYSTEM_NAME\",pretty_name=\"$SYSTEM_PRETTY_NAME\"}\t1" >> "$TARGET"
+  echo -e "node_os_release{id=\"$SYSTEM_ID\",name=\"$SYSTEM_NAME\",pretty_name=\"$SYSTEM_PRETTY_NAME\"}\t$REBOOT_REQUIRED" >> "$TARGET"
   echo    "# HELP node_kernel Kernel version" >> "$TARGET"
   echo    "# TYPE node_kernel counter" >> "$TARGET"
-  echo -e "node_kernel{version=\"$KERNEL_VERSION\"}\t1" >> "$TARGET"
+  echo -e "node_kernel{version=\"$KERNEL_VERSION\"}\tNan" >> "$TARGET"
 }
 
 validate_update_data() {
